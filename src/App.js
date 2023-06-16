@@ -5,8 +5,12 @@ function App() {
   return (
     <div className="cal-container">
       <div className="output">
-        <div className="prev-operand"></div>
-        <div className="current-operand"></div>
+        <div className="prev-operand">
+          1231231231111111111111111111111111111111111
+        </div>
+        <div className="current-operand">
+          1231111111111111111111111111111111111
+        </div>
       </div>
       <button className="span-two">AC</button>
       <button>DEL</button>
