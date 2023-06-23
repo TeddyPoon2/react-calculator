@@ -112,6 +112,7 @@ function reducer(state, { type, payload }) {
         operation: state.operation,
       };
 
+    //cal answer
     case ACTIONS.ANS:
       if (
         state.operation == null ||
@@ -129,6 +130,7 @@ function reducer(state, { type, payload }) {
         overwrite: true,
       };
 
+    //delete button action
     case ACTIONS.DEL:
       if (!!state.overwrite) {
         return {
@@ -153,7 +155,7 @@ function reducer(state, { type, payload }) {
       };
 
     default:
-      return state;
+      return;
   }
 }
 
@@ -185,9 +187,26 @@ function ans({ currentOperand, prevOperand, operation }) {
       break;
 
     default:
-      return "";
+      return;
   }
-  return ans.toString();
+  return ans
+    .toPrecision(10)
+    .replace(/\.?0+$/, "")
+    .toString();
+}
+
+//formatting function
+const INT_FORMATTER = new Intl.NumberFormat("en-us", {
+  maximumFractionDigits: 0,
+});
+
+function formatOperand(operand) {
+  if (operand == null) return;
+  if (operand === "-") return "-";
+
+  const [int, dec] = operand.split(".");
+  if (dec == null) return INT_FORMATTER.format(int);
+  return `${INT_FORMATTER.format(int)}.${dec}`;
 }
 
 function App() {
@@ -200,10 +219,10 @@ function App() {
     <div className="cal-container">
       <div className="output">
         <div className="prev-operand">
-          {prevOperand}
+          {formatOperand(prevOperand)}
           {operation}
         </div>
-        <div className="current-operand">{currentOperand}</div>
+        <div className="current-operand">{formatOperand(currentOperand)}</div>
       </div>
       <button
         className="topBtn"
