@@ -13,14 +13,21 @@ body {
 }
 
 .cal-container {
+  background-color: rgba(0, 0, 0, 0.6);
   display: grid;
   margin-top: 2rem;
   grid-template-columns: repeat(4, 6rem);
   grid-template-rows: minmax(7rem, auto) repeat(5, 6rem);
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: 1.5rem;
 }
 
 .span-two {
   grid-column: span 2;
+  display: flex;
+  padding: 1.5rem;
+  padding-left: 2rem;
 }
 
 .output {
@@ -32,6 +39,8 @@ body {
   word-break: break-all;
   justify-content: space-between;
   align-items: flex-end;
+  border-radius: 1rem;
+  padding: 0.5rem;
 }
 
 .prev-operand {
@@ -44,6 +53,39 @@ body {
   font-size: 3rem;
 }
 
-button {
-  background-color: rgba(0, 0, 0, 0.75);
+.cal-container > button {
+  position: relative;
+  cursor: pointer;
+  border: none;
+  border-radius: 3rem;
+  background-color: rgb(53, 53, 53);
+  color: white;
+  outline: none;
+  transition: 0.2s ease-out;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  &:focus {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+
+  &:active {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.cal-container > .funcBtn {
+  background-color: rgb(255, 153, 0);
+  font-size: 3rem;
+}
+
+.cal-container > .topBtn {
+  background-color: rgb(155, 155, 155);
+  color: black;
+  font-size: 2rem;
+}
+
+.cal-container > .nums {
+  font-size: 2.5rem;
 }
