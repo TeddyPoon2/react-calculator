@@ -62,17 +62,18 @@ body {
   color: white;
   outline: none;
   transition: 0.2s ease-out;
+}
 
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.7);
-  }
-  &:focus {
-    background-color: rgba(255, 255, 255, 0.7);
-  }
+.cal-container > button:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}
 
-  &:active {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
+.cal-container > button:focus {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.cal-container > button:active {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .cal-container > .OpBtn {
