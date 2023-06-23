@@ -6,7 +6,6 @@
 }
 
 body {
-  /* margin: 0; */
   display: flex;
   justify-content: center;
   background: linear-gradient(to right, #f01b1b, #fd32fd);
@@ -76,7 +75,7 @@ body {
   }
 }
 
-.cal-container > .funcBtn {
+.cal-container > .OpBtn {
   background-color: rgb(255, 153, 0);
   font-size: 3rem;
 }
