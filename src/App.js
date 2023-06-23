@@ -16,9 +16,17 @@ function reducer(state, { type, payload }) {
   switch (type) {
     //displaying number to lower part of the output area
     case ACTIONS.ADD_NUM:
-      if (state.currentOperand === "0" && payload.btnValue != ".") {
+      if (!!state.overwrite) {
         return {
-          currentOperand: `${payload.btnValue}`,
+          ...state,
+          currentOperand: payload.btnValue,
+          overwrite: false,
+        };
+      }
+
+      if (state.currentOperand === "0" && payload.btnValue !== ".") {
+        return {
+          currentOperand: payload.btnValue,
         };
       }
 
@@ -41,8 +49,22 @@ function reducer(state, { type, payload }) {
 
     //define the action of each operation buttons
     case ACTIONS.CHOOSE_OP:
-      if (state.currentOperand == null && state.prevOperand == null) {
+      if (
+        state.currentOperand === "." ||
+        (state.currentOperand == null &&
+          state.prevOperand == null &&
+          payload.btnValue !== "-")
+      ) {
         return state;
+      }
+
+      if (state.currentOperand === "-") return state;
+
+      if (state.currentOperand == null && payload.btnValue === "-") {
+        return {
+          ...state,
+          currentOperand: payload.btnValue,
+        };
       }
 
       if (state.prevOperand == null) {
@@ -75,6 +97,7 @@ function reducer(state, { type, payload }) {
       if (
         state.currentOperand == null ||
         state.currentOperand === "." ||
+        state.currentOperand === "-" ||
         currentInt === 0
       ) {
         return state;
@@ -103,7 +126,34 @@ function reducer(state, { type, payload }) {
         currentOperand: ans(state),
         prevOperand: null,
         operation: null,
+        overwrite: true,
       };
+
+    case ACTIONS.DEL:
+      if (!!state.overwrite) {
+        return {
+          ...state,
+          currentOperand: null,
+          overwrite: false,
+        };
+      }
+
+      if (state.currentOperand == null) return state;
+
+      if (state.currentOperand.length === 1) {
+        return {
+          ...state,
+          currentOperand: null,
+        };
+      }
+
+      return {
+        ...state,
+        currentOperand: state.currentOperand.slice(0, -1),
+      };
+
+    default:
+      return state;
   }
 }
 
@@ -114,7 +164,7 @@ function ans({ currentOperand, prevOperand, operation }) {
   let ans = 0;
 
   if (isNaN(prevInt) || isNaN(currentInt)) {
-    return "";
+    return null;
   }
 
   switch (operation) {
@@ -133,8 +183,10 @@ function ans({ currentOperand, prevOperand, operation }) {
     case "÷":
       ans = prevInt / currentInt;
       break;
-  }
 
+    default:
+      return "";
+  }
   return ans.toString();
 }
 
@@ -159,7 +211,14 @@ function App() {
       >
         AC
       </button>
-      <button className="topBtn">DEL</button>
+      <button
+        className="topBtn"
+        onClick={() => {
+          dispatch({ type: ACTIONS.DEL });
+        }}
+      >
+        DEL
+      </button>
       <button
         className="topBtn"
         onClick={() => {
@@ -168,7 +227,6 @@ function App() {
       >
         %
       </button>
-      {/* <button className="topBtn">%</button> */}
       <OpBtns className={"OpBtn"} dispatch={dispatch} btnValue="÷" />
       <NumBtns className={"nums"} dispatch={dispatch} btnValue="7" />
       <NumBtns className={"nums"} dispatch={dispatch} btnValue="8" />
