@@ -12,8 +12,9 @@ function App() {
           1231111111111111111111111111111111111
         </div>
       </div>
-      <button className="span-two">AC</button>
+      <button>AC</button>
       <button>DEL</button>
+      <button>%</button>
       <button>÷</button>
       <button>7</button>
       <button>8</button>
@@ -27,9 +28,9 @@ function App() {
       <button>2</button>
       <button>3</button>
       <button>-</button>
+      <button className="span-two">0</button>
       <button>.</button>
-      <button>0</button>
-      <button className="span-two">=</button>
+      <button>=</button>
     </div>
   );
 }
