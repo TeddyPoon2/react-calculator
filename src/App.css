@@ -21,13 +21,14 @@ body {
   gap: 0.5rem;
   padding: 1rem;
   border-radius: 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.75);
 }
 
 .span-two {
   grid-column: span 2;
   display: flex;
   padding: 1.5rem;
-  padding-left: 2rem;
+  padding-left: 2.3rem;
 }
 
 .output {
