@@ -8,7 +8,7 @@
 body {
   display: flex;
   justify-content: center;
-  background: linear-gradient(to right, #f01b1b, #fd32fd);
+  background: linear-gradient(to right, rgb(53, 53, 53), rgb(255, 153, 0));
 }
 
 .cal-container {
@@ -21,13 +21,6 @@ body {
   padding: 1rem;
   border-radius: 1.5rem;
   border: 2px solid rgba(255, 255, 255, 0.75);
-}
-
-.span-two {
-  grid-column: span 2;
-  display: flex;
-  padding: 1.5rem;
-  padding-left: 2.3rem;
 }
 
 .output {
@@ -54,6 +47,7 @@ body {
 }
 
 .cal-container > button {
+  padding: 0px;
   position: relative;
   cursor: pointer;
   border: none;
@@ -62,6 +56,13 @@ body {
   color: white;
   outline: none;
   transition: 0.2s ease-out;
+}
+
+.cal-container > .span-two {
+  grid-column: span 2;
+  display: flex;
+  padding: 1.5rem;
+  padding-left: 2.3rem;
 }
 
 .cal-container > button:hover {
